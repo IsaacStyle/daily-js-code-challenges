@@ -94,6 +94,7 @@ function sumNumbers(nums) {
   }
   return sum;
 }
+console.log(sumNumbers(1,2,3,4,5))
 
 /*--- better solution (use forEach unless you have to exit loop early) ---*/
 // function sumNumbers(nums) {

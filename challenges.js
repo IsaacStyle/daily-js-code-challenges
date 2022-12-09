@@ -17,6 +17,8 @@ function sayHello() {
   return 'Hello!'
 }
 
+console.log(sayHello())
+
 
 /*-----------------------------------------------------------------
 Challenge: 01-addOne
@@ -33,7 +35,12 @@ addOne(1) //=> 2
 addOne(-5) //=> -4
 -----------------------------------------------------------------*/
 // Your solution for 01-addOne here:
+function addOne(num) {
+    num += 1
+    return num
+}
 
+console.log(addOne(6))
 
 
 
@@ -56,7 +63,11 @@ addTwoNumbers(0, 0) //=> 0
 addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
-
+function addTwoNumbers(num1,num2) {
+    sum = num1 + num2
+    return sum
+}
+console.log(addTwoNumbers(3,9))
 
 
 
@@ -80,8 +91,15 @@ sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
 
-
-
+function sumNumbers(arr) {
+  let sum = 0
+  arr.forEach(num => {
+    sum += num
+    
+  }) 
+  return sum
+}
+console.log(sumNumbers([1,2,3,4,5,6]))
 
 
 /*-----------------------------------------------------------------
@@ -102,9 +120,14 @@ add(1,50,1.23) //=> 52.23
 add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
-
-
-
+function addList(nums) {
+    let sum = 0
+    for(let i = 0;i < nums.length;i++) {
+      sum += nums[i]
+    }
+      return nums
+}
+console.log(addList(1,2,3,4))
 
 
 /*-----------------------------------------------------------------
@@ -126,8 +149,23 @@ computeRemainder(4,0) //=> Infinity
 computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
-
-
+// 
+function computeRemainder(n1,n2) {
+    let rem = 0
+    let check = 0
+    if (n2 === 0) {
+      return Infinity
+    } else {
+      for(let i = 2;i < n1;i++) {
+          if(check < n1 - n2)  {
+            check = n2 * i
+          }
+      }
+    } 
+    rem = n1 - check 
+    return rem
+}
+console.log(computeRemainder(62,0))
 
 
 
@@ -149,9 +187,19 @@ range(1,1) //=> []
 range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
+function range(n1,n2) {
+    let arr = []
+    if (n1 >= n2) {
+      return 'First argument must be less than second'
+    } else {
+      while (n1 < n2) {
+        arr.push(n1)
+        n1 += 1
+      }
+    } return arr
+}
 
-
-
+console.log(range(16,16))
 
 
 /*-----------------------------------------------------------------
@@ -161,16 +209,22 @@ Difficulty: Basic
 
 Prompt:
 
-- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse orderand converts all characters to uppercase.
+- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse order and converts all characters to uppercase.
 
 Examples:
 
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
+function reverseUpcaseString(str) {
+  str = str.toUpperCase()
+  let rstr = ''
+  for(let i = str.length - 1;i >= 0;i--) {
+    rstr += str[i]
+  } return rstr
+}
 
-
-
+console.log(reverseUpcaseString('pizza'))
 
 
 /*-----------------------------------------------------------------
@@ -189,8 +243,19 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-
-
+function removeEnds(str) {
+  let rE = ''
+  if (str.length <=2) {
+    return ''
+  } else {
+    for(let i = 0;i < str.length;i++) {
+      if (i !== 0 && i !== str.length - 1) {
+        rE += str[i]
+      }
+    }
+  } return rE
+}
+console.log(removeEnds('beeg'))
 
 
 
@@ -212,9 +277,20 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
+function charCount(str) {
+  let ob = {}
+  let temp = []
+  for(let i = 0;i < str.length;i++) {
+    ob[str[i]] = 1
+    if (temp.includes(str[i])) {
+      ob[str[i]] += 1
+    }
+    temp.push(str[i])
+  }
+  return ob
+}
 
-
-
+console.log(charCount('hello'))
 
 
 /*-----------------------------------------------------------------
@@ -238,8 +314,14 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
-
-
+function formatWithPadding(n1,pad,n2) {
+  n1 = n1.toString()
+  let fwp = ''
+  for(let i = n1.length;i < n2;i++) {
+    fwp += pad
+  } return fwp +=n1
+}
+console.log(formatWithPadding(123,'yoo',10))
 
 
 
@@ -263,8 +345,25 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-
-
+function isPalindrome(str) {
+  let rstr = ''
+  str = str.toUpperCase()
+  strNew = ''
+  for(let i = 0; i < str.length;i++) {
+    if (str[i] !== ' ') {
+    strNew += str[i]
+    }
+  }
+  for(let i = strNew.length - 1;i >= 0; i--) {
+    rstr += strNew[i]
+  } 
+  if(rstr === strNew) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log(isPalindrome('rr a C e c a R  r'))
 
 
 
@@ -289,8 +388,19 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-
-
+function hammingDistance(str1,str2) {
+    let sum = 0
+  if (str1.length !== str2.length) {
+    return NaN
+  } else {
+    for(let i = 0;i < str1.length;i++) {
+      if (str1[i] !== str2[i]) {
+        sum += 1
+      }
+    } return sum
+}
+}
+console.log(hammingDistance('abcde', 'a25he'))
 
 
 
@@ -313,7 +423,20 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
-
+function mumble(str) {
+    let mum = ''
+    let num = 1
+    for(let j = 0;j < str.length;j++) {
+      num = 1
+      if (j !== 0) mum += '-'
+      while (num <= j+1) {
+      mum += str[j]
+      num++
+    }
+  }
+    return mum
+}
+console.log(mumble('yertz'))
 
 
 
